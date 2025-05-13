@@ -80,13 +80,3 @@ namespace Sube2.HelloMvc.Controllers
         }
     }
 }
-
-
-//Controller'dan View'e veri taşıma
-//1-ViewData: Key-Value Collection. Key'ler mutlaka tekil olmalıdır.Key'ler string, Value'lar object'dir. Type-safe değildir.!
-//2-ViewBag: Arka planda ViewData dictionary'sini kullanır. Bu durumda daha önce ViewData'larda kullanılan key'ler kullanılamaz.
-//ViewBag'ler dynamic yapılardır ve içindeki türler RunTime sırasında tespit edilir. 
-//3-Model:
-//4-TempData**:
-
-//Not: Generic olmayan collection'ların tip güvenliği olmaz.
