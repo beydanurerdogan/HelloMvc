@@ -1,0 +1,58 @@
+﻿@model Ogrenci
+@{
+    ViewData["Title"] = "OgrenciDetay";
+}
+
+<h1>Öğrenci Detay</h1>
+<form id="guncelleForm" asp-action="OgrenciDetay" asp-controller="Ogrenci" method="post">
+    <input type="hidden" asp-for="OgrenciId" />
+    <div class="mb-3">
+        <label class="form-label" asp-for="Ad"></label>
+        <input type="text" class="form-control" placeholder="Ad" asp-for="Ad">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Soyad"></label>
+        <input type="text" class="form-control" placeholder="Soyad" asp-for="Soyad">
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <div id="sonucMesaj" class="alert mt-2" style="display:none;"></div>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#guncelleForm').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (res) {
+                    if (res.success) {
+                        $('#sonucMesaj')
+                            .removeClass()
+                            .addClass('alert alert-success')
+                            .text('Güncelleme başarılı!')
+                            .show();
+                        window.location.href = res.redirectUrl;  // Yönlendirme
+                    } else {
+                        $('#sonucMesaj')
+                            .removeClass()
+                            .addClass('alert alert-danger')
+                            .text('Güncelleme başarısız!')
+                            .show();
+                    }
+                },
+                error: function () {
+                    $('#sonucMesaj')
+                        .removeClass()
+                        .addClass('alert alert-danger')
+                        .text('Sunucuda bir hata oluştu!')
+                        .show();
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,27 @@
+﻿@model Ogrenci
+@{
+    ViewData["Title"] = "Öğrenci Ekleme";
+}
+
+<h1>Öğrenci Ekle</h1>
+<form asp-action="OgrenciEkle" asp-controller="Ogrenci" method="post">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Ad"></label>
+        <input type="text" class="form-control" placeholder="Ad" asp-for="Ad" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Soyad"></label>
+        <input type="text" class="form-control" placeholder="Soyad" asp-for="Soyad" />
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Kaydet" />
+</form>
+
+@if (TempData["sonuc"] != null && (bool)TempData["sonuc"]! == true)
+{
+    <script>alert('Öğrenci ekleme başarılı');</script>
+}
+else if (TempData["sonuc"] != null && (bool)TempData["sonuc"]! == false)
+{
+    <script>alert('Öğrenci ekleme başarısız');</script>
+}
